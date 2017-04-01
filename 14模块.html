@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="http://code.angularjs.org/angular-1.0.1.min.js"></script>
+</head>
+<body>
+    <h3>创建模块</h3>
+    <div>...</div>
+    <script>
+        var app = angular.module("myApp", []);
+    </script>
+
+    <h3>添加控制器</h3>
+    <div ng-controller="myCtrl">
+        {{ firstName + " " + lastName }}
+    </div>
+    <script>
+        app.controller("myCtrl", function($scope) {
+            $scope.firstName = "John";
+            $scope.lastName = "Doe";
+        });
+    </script>
+
+    <h3>添加指令</h3>
+    <div runoob-directive></div>
+    <script>
+        app.directive("runoobDirective", function() {
+            return {
+                template : "我在指令构造器中创建!"
+            };
+        });
+    </script>
+
+    <h3>模块和控制器包含在 JS 文件中</h3>
+    <div>看教程</div>
+</body>
+</html>

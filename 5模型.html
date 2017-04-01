@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        input.ng-invalid{
+            background-color: lightblue;
+        }
+    </style>
+    <script src="http://code.angularjs.org/angular-1.0.1.min.js"></script>
+</head>
+<body>
+    <h3>1、ng-model 指令</h3>
+    <!--ng-model 指令用于绑定应用程序数据到 HTML 控制器(input, select, textarea)的值。-->
+    <div ng-controller="myCtrl">
+        名字：<input ng-model="name"/>
+        <h1>你输入了: {{name}}</h1><!--双向数据绑定-->
+    </div>
+    <script>
+        var app=angular.module('myApp',[]);
+        app.controller('myCtrl', function ($scope) {
+            $scope.name="John Doe";
+        });
+    </script>
+
+    <h3>2、验证用户输入</h3>
+    <form name="myForm">
+        Email
+        <input type="email" name="myAddress" ng-model="test"/>
+        <span ng-show="myForm.myAddress.$error.email">不是一个合法的邮箱地址</span>
+    </form>
+
+    <h3>3、应用状态</h3>
+    <!--ng-model 指令可以为应用数据提供状态值(invalid, dirty, touched, error)-->
+    <form name="myForm1" ng-init="mytext='test@runoob.com'">
+        Email
+        <input type="email" name="myAddress1" ng-model="myText" required/>
+        <h1>状态</h1>
+        {{myForm1.myAddress1.$valid}}<!--如果输入的值是合法的则为 true-->
+        {{myForm1.myAddress1.$dirty}}<!--如果值改变则为 true-->
+        {{myForm1.myAddress1.$touched}}<!--如果通过触屏点击则为 true-->
+    </form>
+
+    <h3>4、CSS类</h3>
+
+    <form name="myForm2">
+        输入你的名字
+        <input name="myAddress2" ng-model="text2" required/>
+    </form>
+</body>
+</html>

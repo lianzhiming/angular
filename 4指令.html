@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="http://code.angularjs.org/angular-1.0.1.min.js"></script>
+</head>
+<body>
+<!--AngularJS 通过被称为 指令 的新属性来扩展 HTML。
+AngularJS 通过内置的指令来为应用添加功能。
+AngularJS 允许你自定义指令。-->
+    <div ng-init="firstName='John'">
+        <p>在输入框中尝试输入：</p>
+        <p>姓名：<input type="text" ng-model="firstName"></p>
+        <p>你输入的为： {{ firstName }}</p>
+    </div>
+<!--ng-app 指令告诉 AngularJS，<div> 元素是 AngularJS 应用程序 的"所有者"
+    一个网页可以包含多个运行在不同元素中的 AngularJS 应用程序。-->
+
+    <h3>1、数据绑定</h3>
+    <div ng-init="quantity=1;price=5">
+        <h2>价格计算器</h2>
+        数量： <input type="number"    ng-model="quantity">
+        价格： <input type="number" ng-model="price">
+        <p><b>总价：</b> {{ quantity * price }}</p>
+    </div>
+<!--使用 ng-init 不是很常见。您将在控制器一章中学习到一个更好的初始化数据的方式。-->
+
+    <h3>2、重复 HTML 元素,ng-repeat 指令会重复一个 HTML 元素</h3>
+    <div ng-init="names=['Jani','Hege','Kai']">
+        <p>使用 ng-repeat 来循环数组</p>
+        <ul>
+            <li ng-repeat="x in names">
+                {{ x }}
+            </li>
+        </ul>
+    </div>
+    <div ng-init="names=[{name:'Jani',country:'Norway'},{name:'Hege',country:'Sweden'},{name:'Kai',country:'Denmark'}]">
+        <p>循环对象：</p>
+        <ul>
+            <li ng-repeat="x in names">
+                {{ x.name + ', ' + x.country }}
+            </li>
+        </ul>
+    </div>
+
+    <h3>3、创建自定义的指令</h3>
+    <runoob-directive></runoob-directive>
+    <div runoob-directive></div>
+    <div class="runoob-directive"></div>
+    <!-- directive: runoob-directive -->
+    <script>
+        console.log(1)
+        var app = angular.module("myApp", []);
+        app.directive("runoobDirective", function() {
+            return {
+                restrict : "EACM",/*可通过该属性设置以上四中方式哪种可见*/
+                replace:true,/*为了让注释可见，即M可见*/
+                template : "<h1>自定义指令!</h1>"
+            };
+        });
+        console.log(2)
+    </script>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="http://code.angularjs.org/angular-1.0.1.min.js"></script>
+</head>
+<body>
+    <h3>angular.lowercase()</h3>
+    <div ng-controller="myCtrl">
+        <p>{{x1}}</p>
+        <p>{{x2}}</p>
+    </div>
+    <script>
+        var app=angular.module('myApp',[]);
+        app.controller('myCtrl', function ($scope) {
+            $scope.x1="JOHN";
+            $scope.x2=angular.lowercase($scope.x1);
+        });
+    </script>
+
+    <h3>angular.uppercase()</h3>
+    <div ng-controller="myCtrl1">
+        <p>{{ x1 }}</p>
+        <p>{{ x2 }}</p>
+    </div>
+    <script>
+        app.controller('myCtrl1', function($scope) {
+            $scope.x1 = "John";
+            $scope.x2 = angular.uppercase($scope.x1);
+        });
+    </script>
+
+    <h3>angular.isString()</h3>
+    <div ng-controller="myCtrl2">
+        <p>{{ x1 }}</p>
+        <p>{{ x2 }}</p>
+    </div>
+    <script>
+        app.controller('myCtrl2', function($scope) {
+            $scope.x1 = "JOHN";
+            $scope.x2 = angular.isString($scope.x1);
+        });
+    </script>
+
+    <h3>angular.isNumber()</h3>
+    <div ng-controller="myCtrl3">
+        <p>{{ x1 }}</p>
+        <p>{{ x2 }}</p>
+    </div>
+    <script>
+        app.controller('myCtrl3', function($scope) {
+            $scope.x1 = "JOHN";
+            $scope.x2 = angular.isNumber($scope.x1);
+        });
+    </script>
+</body>
+</html>

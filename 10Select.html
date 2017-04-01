@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="http://code.angularjs.org/angular-1.0.1.min.js"></script>
+</head>
+<body>
+    <div ng-controller="myCtrl">
+        <select ng-init="selectedName=names[0]" ng-model="selectedName" ng-options="x for x in names"></select><!--法1-->
+        <select><!--法2-->
+            <option ng-repeat="x in names">{{x}}</option>
+        </select>
+    </div>
+    <script>
+        var app=angular.module('myApp',[]);
+        app.controller('myCtrl', function ($scope) {
+            $scope.names=["Google", "Runoob", "Taobao"];
+        });
+    </script>
+
+    <div ng-controller="myCtrl1">
+        <select ng-model="selectedSite">
+            <option ng-repeat="x in sites" value="{{x.url}}">{{x.site}}</option>
+        </select>
+        <h1>你选择的是：{{selectedSite}}</h1>
+    </div>
+    <script>
+        app.controller('myCtrl1', function ($scope) {
+            $scope.sites=[
+                {site : "Google", url : "http://www.google.com"},
+                {site : "Runoob", url : "http://www.runoob.com"},
+                {site : "Taobao", url : "http://www.taobao.com"}
+            ];
+        });
+    </script>
+
+    <div ng-controller="myCtrl2">
+        <select ng-model="selectedSite" ng-options="x.site for x in sites"></select>
+        <h1>你选择的是：{{selectedSite.site}}</h1>
+        <p>网址为: {{selectedSite.url}}</p>
+    </div>
+    <script>
+        app.controller('myCtrl2', function ($scope) {
+            $scope.sites=[
+                {site : "Google", url : "http://www.google.com"},
+                {site : "Runoob", url : "http://www.runoob.com"},
+                {site : "Taobao", url : "http://www.taobao.com"}
+            ];
+        });
+    </script>
+</body>
+</html>
